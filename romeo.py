@@ -36,7 +36,7 @@ image = st.selectbox("Choose a text file", books.keys())
 image = books.get(image)
 
 if image != " ":
-    stop_words = []
+    stopwords = set(STOPWORDS)
     raw_text = open(image,"r").read().lower()
     nltk_stop_words = stopwords.words('english')
 
