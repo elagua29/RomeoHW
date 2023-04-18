@@ -56,21 +56,18 @@ if image != " ":
 tab1, tab2, tab3 = st.tabs(['Word Cloud', 'Bar Chart', 'View Text'])
 
 with tab1:
-     if use_stopwords:
-        if image != " ":
-            stopwords = set(STOPWORDS)
-            stopwords.update(['us', 'one', 'will', 'said', 'now', 'well', 'man', 'may',
-            'little', 'say', 'must', 'way', 'long', 'yet', 'mean',
-            'put', 'seem', 'asked', 'made', 'half', 'much',
-            'certainly', 'might', 'came'])
-            cloud = WordCloud(background_color = "white", 
-            max_words = max_word, 
-            max_font_size=max_font, 
-            random_state=random,
-            stopwords = stopwords)
-            wc = cloud.generate(dataset)
-            word_cloud = cloud.to_file('wordcloud.png') #not necessary for streamlit app to run. this just saves image to working directory
-            st.image(wc.to_array(), width=image_size)    
+    if image != " ":
+    stopwords = set(STOPWORDS)
+    raw_text = open(image,"r").read().lower()
+    nltk_stop_words = stopwords.words('english')
+
+    if remove_stop_words:
+        stop_words = set(nltk_stop_words)
+        stop_words.update(['us', 'one', 'though','will', 'said', 'now', 'well', 'man', 'may',
+        'little', 'say', 'must', 'way', 'long', 'yet', 'mean',
+        'put', 'seem', 'asked', 'made', 'half', 'much',
+        'certainly', 'might', 'came','thou'])
+           
 
 with tab2:
     st.write('This is my second tab')
