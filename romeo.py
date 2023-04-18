@@ -34,9 +34,9 @@ image = st.selectbox("Choose a text file", books.keys())
 image = books.get(image)
 
 if image != " ":
-    stopwords = set(STOPWORDS)
+    stop_words = []
     raw_text = open(image,"r").read().lower()
-   
+    nltk_stop_words = stopwords.words('english')
 
     if remove_stop_words:
         stop_words = set(nltk_stop_words)
@@ -62,4 +62,3 @@ with tab3:
     if image != " ":
         raw_text = open(image,"r").read().lower()
         st.write(raw_text)
-
