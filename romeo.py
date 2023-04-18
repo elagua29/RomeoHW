@@ -56,7 +56,8 @@ if image != " ":
 tab1, tab2, tab3 = st.tabs(['Word Cloud', 'Bar Chart', 'View Text'])
 
 with tab1:
-    if image != " ":
+    
+if image != " ":
     stopwords = set(STOPWORDS)
     raw_text = open(image,"r").read().lower()
     nltk_stop_words = stopwords.words('english')
