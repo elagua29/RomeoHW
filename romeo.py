@@ -5,8 +5,6 @@ import altair as alt
 from wordcloud import WordCloud, STOPWORDS
 import glob, nltk, os, re
 from nltk.corpus import stopwords
-import nltk as nltk
-nltk.download('stopwords')
 
 st.markdown('''
 # Analyzing Shakespeare Texts
@@ -36,7 +34,7 @@ image = st.selectbox("Choose a text file", books.keys())
 image = books.get(image)
 
 if image != " ":
-    stopwords = set(STOPWORDS)
+    stop_words = []
     raw_text = open(image,"r").read().lower()
     nltk_stop_words = stopwords.words('english')
 
@@ -51,24 +49,11 @@ if image != " ":
     tokens = nltk.word_tokenize(raw_text)
 
 
-# tokenize dataset
 
 tab1, tab2, tab3 = st.tabs(['Word Cloud', 'Bar Chart', 'View Text'])
 
 with tab1:
-    
-if image != " ":
-    stopwords = set(STOPWORDS)
-    raw_text = open(image,"r").read().lower()
-    nltk_stop_words = stopwords.words('english')
-
-    if remove_stop_words:
-        stop_words = set(nltk_stop_words)
-        stop_words.update(['us', 'one', 'though','will', 'said', 'now', 'well', 'man', 'may',
-        'little', 'say', 'must', 'way', 'long', 'yet', 'mean',
-        'put', 'seem', 'asked', 'made', 'half', 'much',
-        'certainly', 'might', 'came','thou'])
-           
+    st.write('This is my first tab')
 
 with tab2:
     st.write('This is my second tab')
@@ -77,10 +62,4 @@ with tab3:
     if image != " ":
         raw_text = open(image,"r").read().lower()
         st.write(raw_text)
-
-
-
-
-
-
 
