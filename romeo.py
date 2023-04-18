@@ -53,7 +53,19 @@ if image != " ":
 tab1, tab2, tab3 = st.tabs(['Word Cloud', 'Bar Chart', 'View Text'])
 
 with tab1:
-    st.write('This is my first tab')
+    if use_stopwords:
+        if image != " ":
+            stopwords = set(STOPWORDS)
+            stopwords.update(['us', 'one', 'will', 'said', 'now', 'well', 'man', 'may',
+            'little', 'say', 'must', 'way', 'long', 'yet', 'mean',
+            'put', 'seem', 'asked', 'made', 'half', 'much',
+            'certainly', 'might', 'came'])
+            cloud = WordCloud(background_color = "white", 
+            max_words = max_word, 
+            max_font_size=max_font, 
+            random_state=random,
+            stopwords = stopwords)
+            wc = cloud.generate(dataset)
 
 with tab2:
     st.write('This is my second tab')
