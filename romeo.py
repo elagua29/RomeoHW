@@ -28,6 +28,8 @@ min_word = st.sidebar.slider("Minimum count of words",min_value=5, max_value=100
 books = {" ":" ","A Mid Summer Night's Dream":"data/summer.txt","The Merchant of Venice":"data/merchant.txt","Romeo and Juliet":"data/romeo.txt"}
 import nltk
 nltk.download('punkt')
+image = st.selectbox('Please select a Book', books.keys())
+image=books.get(image)
 
 ## Select text files
 image = st.selectbox("Choose a text file", books.keys())
