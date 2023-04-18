@@ -36,7 +36,7 @@ image = books.get(image)
 if image != " ":
     stopwords = set(STOPWORDS)
     raw_text = open(image,"r").read().lower()
-    nltk_stop_words = stopwords.words('english')
+   
 
     if remove_stop_words:
         stop_words = set(nltk_stop_words)
