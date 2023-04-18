@@ -28,8 +28,6 @@ min_word = st.sidebar.slider("Minimum count of words",min_value=5, max_value=100
 books = {" ":" ","A Mid Summer Night's Dream":"data/summer.txt","The Merchant of Venice":"data/merchant.txt","Romeo and Juliet":"data/romeo.txt"}
 import nltk
 nltk.download('punkt')
-image = st.selectbox('Please select a Book', books.keys())
-image=books.get(image)
 
 ## Select text files
 image = st.selectbox("Choose a text file", books.keys())
@@ -53,11 +51,26 @@ if image != " ":
     tokens = nltk.word_tokenize(raw_text)
 
 
+# tokenize dataset
 
 tab1, tab2, tab3 = st.tabs(['Word Cloud', 'Bar Chart', 'View Text'])
 
 with tab1:
-    st.write('This is my first tab')
+     if use_stopwords:
+        if image != " ":
+            stopwords = set(STOPWORDS)
+            stopwords.update(['us', 'one', 'will', 'said', 'now', 'well', 'man', 'may',
+            'little', 'say', 'must', 'way', 'long', 'yet', 'mean',
+            'put', 'seem', 'asked', 'made', 'half', 'much',
+            'certainly', 'might', 'came'])
+            cloud = WordCloud(background_color = "white", 
+            max_words = max_word, 
+            max_font_size=max_font, 
+            random_state=random,
+            stopwords = stopwords)
+            wc = cloud.generate(dataset)
+            word_cloud = cloud.to_file('wordcloud.png') #not necessary for streamlit app to run. this just saves image to working directory
+            st.image(wc.to_array(), width=image_size)    
 
 with tab2:
     st.write('This is my second tab')
